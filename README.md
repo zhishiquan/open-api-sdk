@@ -16,8 +16,8 @@ class OpenApiTest {
     @Before
     public void setUp() {
         this.openApi = OpenApi.builder()
-                            .clientId("client_1")
-                            .clientSecret("jl")
+                            .clientId("your client id")
+                            .clientSecret("your client secret")
                             .isSandbox(true)
                             .build();    
     }
