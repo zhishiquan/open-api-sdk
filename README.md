@@ -1,5 +1,7 @@
 ## 知识圈开放API SDK文档
 
+[文档]("https://github.com/zhishiquan/open-api-sdk/wiki")
+
 #### Usage:
 
 ```java
