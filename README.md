@@ -1,10 +1,10 @@
-## 知识圈开放API SDK文档
+## ZhiShiQuan OpenAPI SDK Document
 
-### [中文文档](https://github.com/zhishiquan/open-api-sdk/wiki/%E7%9F%A5%E8%AF%86%E5%9C%88OpenApi%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
-### [英文文档](https://github.com/zhishiquan/open-api-sdk/wiki/ZhiShiQuan-Open-Api-Quickstart)
+### [文档](https://github.com/zhishiquan/open-api-sdk/wiki/%E7%9F%A5%E8%AF%86%E5%9C%88OpenApi%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
+### [Document](https://github.com/zhishiquan/open-api-sdk/wiki/ZhiShiQuan-Open-Api-Quickstart)
 
 
-#### Usage:
+#### Quickstart:
 
 ```java
 class OpenApiTest {
