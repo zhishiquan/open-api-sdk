@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zhishiquan.openapi.enums.ScopeEnum;
 import com.zhishiquan.openapi.model.*;
-import com.zhishiquan.openapi.requests.AttendanceCreateRequest;
-import com.zhishiquan.openapi.requests.AttendanceHideCtrlRequest;
-import com.zhishiquan.openapi.requests.Request;
-import com.zhishiquan.openapi.requests.TeamUserListRequest;
+import com.zhishiquan.openapi.requests.*;
 import com.zhishiquan.openapi.responses.AttendanceCreateResponse;
 import com.zhishiquan.openapi.responses.AttendanceHideCtrlResponse;
+import com.zhishiquan.openapi.responses.InviteTeamUserResponse;
 import com.zhishiquan.openapi.responses.TeamUserListResponse;
 import com.zhishiquan.openapi.urls.AttendanceUrl;
 import com.zhishiquan.openapi.urls.CommonUrl;
@@ -123,6 +121,20 @@ public final class OpenApi {
 
         JSONObject json = HttpUtils.post(TeamUrl.users(this.isSandbox).getUrl(), request, headers);
         return json.toJavaObject(TeamUserListResponse.class);
+    }
+
+    /**
+     * 邀请团队成员
+     * @param inviteTeamUser 邀请成员参数
+     * @return InviteTeamUserResponse
+     */
+    public InviteTeamUserResponse inviteTeamUser(InviteTeamUser inviteTeamUser) {
+        String accessToken = getAccessToken(ScopeEnum.ATTENDANCE.getScope());
+        Headers headers = headerWrapper(accessToken);
+        InviteTeamUserRequest request = buildRequest(InviteTeamUserRequest.class);
+        request.setData(inviteTeamUser);
+        JSONObject json = HttpUtils.post(TeamUrl.inviteUser(this.isSandbox).getUrl(), request, headers);
+        return json.toJavaObject(InviteTeamUserResponse.class);
     }
 
     /**

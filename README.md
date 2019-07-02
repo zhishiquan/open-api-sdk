@@ -61,14 +61,29 @@ class OpenApiTest {
     }
         
     /**
-    * 获取我的团队成员
-    */
+     * 获取我的团队成员列表
+     * mobile - 按手机号查找 (非必填)
+     */
     @Test
     public void testTeamUsers() {
         TeamUserListResponse response = openApi.teamUsers(TeamUserList
                 .builder()
                 .mobile("13428888367")
                 .build(), 1, 10);
+        System.out.println(JSON.toJSONString(response));
+        Assert.assertEquals(0, response.getState().getCode());
+    }
+
+    /**
+     * 邀请团队成员
+     * inviteNum - 邀请数量
+     */
+    @Test
+    public void testInviteTeamUser() {
+        InviteTeamUserResponse response = openApi.inviteTeamUser(InviteTeamUser
+                .builder()
+                .inviteNum(2)
+                .build());
         System.out.println(JSON.toJSONString(response));
         Assert.assertEquals(0, response.getState().getCode());
     }

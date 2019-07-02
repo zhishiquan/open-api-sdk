@@ -22,4 +22,15 @@ public final class TeamUrl extends AbstractBaseUrl {
         }
         return new TeamUrl("团队成员列表", host.concat("/auth/proxy/team/v1/users"));
     }
+
+    /**
+     * 邀请管理员
+     */
+    public static TeamUrl inviteUser(boolean isSandbox) {
+        String host = URLConstants.PRODUCT;
+        if(isSandbox) {
+            host = URLConstants.SANDBOX;
+        }
+        return new TeamUrl("邀请管理员", host.concat("/auth/proxy/team/v1/inviteUser"));
+    }
 }

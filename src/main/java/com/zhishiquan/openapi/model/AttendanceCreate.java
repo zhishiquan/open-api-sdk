@@ -3,6 +3,8 @@ package com.zhishiquan.openapi.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 创建训练营request数据
  * @author jl
@@ -49,4 +51,9 @@ public class AttendanceCreate {
      * 手机号码
      */
     private String mobile;
+
+    /**
+     * 绑定管理员的userId
+     */
+    private List<Long> managerUserIds;
 }
