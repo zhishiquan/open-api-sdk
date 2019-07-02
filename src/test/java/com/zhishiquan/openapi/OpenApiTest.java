@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.zhishiquan.openapi.core.OpenApi;
 import com.zhishiquan.openapi.model.AttendanceCreate;
 import com.zhishiquan.openapi.model.AttendanceHideCtrl;
+import com.zhishiquan.openapi.model.TeamUserList;
 import com.zhishiquan.openapi.responses.AttendanceCreateResponse;
 import com.zhishiquan.openapi.responses.AttendanceHideCtrlResponse;
+import com.zhishiquan.openapi.responses.TeamUserListResponse;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,6 +61,16 @@ public class OpenApiTest {
                 .activityId("854f4861cbb840808fe97b4434b1e4f4")
                 .isHide(true)
                 .build());
+        System.out.println(JSON.toJSONString(response));
+        Assert.assertEquals(0, response.getState().getCode());
+    }
+
+    @Test
+    public void testTeamUsers() {
+        TeamUserListResponse response = openApi.teamUsers(TeamUserList
+                .builder()
+                .mobile("13428888367")
+                .build(), 1, 10);
         System.out.println(JSON.toJSONString(response));
         Assert.assertEquals(0, response.getState().getCode());
     }
