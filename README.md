@@ -13,6 +13,9 @@ class OpenApiTest {
     */
     private OpenApi openApi;
     
+    /**
+    * 初始化OpenApiClient
+    */
     @Before
     public void setUp() {
         this.openApi = OpenApi.builder()
@@ -21,34 +24,53 @@ class OpenApiTest {
                             .isSandbox(true)
                             .build();    
     }
-        
+    
+    /**
+    * 创建训练营
+    */
     @Test
     public void testAttendanceCreate() { 
         Long now = System.currentTimeMillis();
         AttendanceCreateResponse response = openApi.createAttendance(AttendanceCreate
             .builder()
-            .name("JL测试创建训练营2")
-            .creator("JL")
-            .startTime(now)
-            .endTime(now + 3600000L * 24L * 30L)
-            .failDay(2)
-            .money(200)
-            .ratio(50)
-            .mobile("13428888367")
+            .name("JL测试创建训练营2") // 训练营名称
+            .creator("JL") // 发起人名称
+            .startTime(now) // 课程开始时间
+            .endTime(now + 3600000L * 24L * 30L) // 课程结束时间
+            .failDay(2) // 允许失败天数
+            .money(200) // 课程单价
+            .ratio(50) // 课程奖金比例
+            .mobile("13428888367") // 联系手机号码
             .build());
             System.out.println(JSON.toJSONString(response));
             Assert.assertEquals(0, response.getState().getCode());
         }
     
-        @Test
-        public void testHideCtrl() {
-            AttendanceHideCtrlResponse response = openApi.attendanceHideCtrl(AttendanceHideCtrl
-                    .builder()
-                    .activityId("9cba96652cdb455d8bc7986783c69314")
-                    .isHide(true)
-                    .build());
-            System.out.println(JSON.toJSONString(response));
-            Assert.assertEquals(0, response.getState().getCode());
-        }
+    /**
+    * 隐藏训练营
+    */
+    @Test
+    public void testHideCtrl() {
+        AttendanceHideCtrlResponse response = openApi.attendanceHideCtrl(AttendanceHideCtrl
+                .builder()
+                .activityId("9cba96652cdb455d8bc7986783c69314") // 需要隐藏的课程id
+                .isHide(true)
+                .build());
+        System.out.println(JSON.toJSONString(response));
+        Assert.assertEquals(0, response.getState().getCode());
+    }
+        
+    /**
+    * 获取我的团队成员
+    */
+    @Test
+    public void testTeamUsers() {
+        TeamUserListResponse response = openApi.teamUsers(TeamUserList
+                .builder()
+                .mobile("13428888367")
+                .build(), 1, 10);
+        System.out.println(JSON.toJSONString(response));
+        Assert.assertEquals(0, response.getState().getCode());
+    }
 }
 ```

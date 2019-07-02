@@ -3,16 +3,17 @@ package com.zhishiquan.openapi.core;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zhishiquan.openapi.enums.ScopeEnum;
-import com.zhishiquan.openapi.model.AccessTokenEntity;
-import com.zhishiquan.openapi.model.AttendanceCreate;
+import com.zhishiquan.openapi.model.*;
 import com.zhishiquan.openapi.requests.AttendanceCreateRequest;
-import com.zhishiquan.openapi.model.AttendanceHideCtrl;
 import com.zhishiquan.openapi.requests.AttendanceHideCtrlRequest;
 import com.zhishiquan.openapi.requests.Request;
+import com.zhishiquan.openapi.requests.TeamUserListRequest;
 import com.zhishiquan.openapi.responses.AttendanceCreateResponse;
 import com.zhishiquan.openapi.responses.AttendanceHideCtrlResponse;
+import com.zhishiquan.openapi.responses.TeamUserListResponse;
 import com.zhishiquan.openapi.urls.AttendanceUrl;
 import com.zhishiquan.openapi.urls.CommonUrl;
+import com.zhishiquan.openapi.urls.TeamUrl;
 import com.zhishiquan.openapi.utils.HttpUtils;
 import com.zhishiquan.openapi.utils.MD5;
 import com.zhishiquan.openapi.utils.StringMapBuilder;
@@ -102,6 +103,26 @@ public final class OpenApi {
         request.setData(attendanceHideCtrl);
         JSONObject json = HttpUtils.post(AttendanceUrl.hideCtrl(this.isSandbox).getUrl(), request, headers);
         return json.toJavaObject(AttendanceHideCtrlResponse.class);
+    }
+
+    /**
+     * 获取我的团队成员列表
+     * @param teamUserList 团队成员实体
+     * @return TeamUserListResponse
+     */
+    public TeamUserListResponse teamUsers(TeamUserList teamUserList, int page, int size) {
+        String accessToken = getAccessToken(ScopeEnum.ATTENDANCE.getScope());
+        Headers headers = headerWrapper(accessToken);
+        TeamUserListRequest request = buildRequest(TeamUserListRequest.class);
+        request.setData(teamUserList);
+
+        PageEntity pageEntity = new PageEntity();
+        pageEntity.setPage(page);
+        pageEntity.setSize(size);
+        request.setPage(pageEntity);
+
+        JSONObject json = HttpUtils.post(TeamUrl.users(this.isSandbox).getUrl(), request, headers);
+        return json.toJavaObject(TeamUserListResponse.class);
     }
 
     /**
