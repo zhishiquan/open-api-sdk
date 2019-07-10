@@ -31,8 +31,6 @@ public class OpenApiTest {
     @Before
     public void setUp() {
         this.openApi = OpenApi.builder()
-//                .clientId("7OivOtcc7dBdyvi9")
-//                .clientSecret("4JLvRaT4sOYqHlJ1j2NVGZm0oLfWVq4U")
                 .clientId("client_1")
                 .clientSecret("jl")
                 .isSandbox(false)
@@ -54,7 +52,7 @@ public class OpenApiTest {
     @Test
     public void testAttendanceCreate() {
         List<Long> managerUserIds = new ArrayList<>();
-        managerUserIds.add(151L);
+        managerUserIds.add(2196528L);
         Long now = System.currentTimeMillis();
         AttendanceCreateResponse response = openApi.createAttendance(AttendanceCreate
                 .builder()
@@ -96,7 +94,7 @@ public class OpenApiTest {
     public void testTeamUsers() {
         TeamUserListResponse response = openApi.teamUsers(TeamUserList
                 .builder()
-                .mobile("13428888367")
+//                .mobile("13826469570")
                 .build(), 1, 10);
         System.out.println(JSON.toJSONString(response));
         Assert.assertEquals(0, response.getState().getCode());

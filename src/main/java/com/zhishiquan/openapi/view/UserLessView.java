@@ -16,5 +16,6 @@ public class UserLessView {
     private String cRemark;
     private String headImgUrl;
     private Boolean isManager;
+    private String mobile;
 
 }
