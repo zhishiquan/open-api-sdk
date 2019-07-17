@@ -22,4 +22,9 @@ public class AttendanceCreateData {
      * 小程序的path
      */
     private String miniUrl;
+
+    /**
+     * 小程序码url
+     */
+    private String miniQrCodeUrl;
 }
