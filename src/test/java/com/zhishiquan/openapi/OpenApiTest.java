@@ -52,7 +52,7 @@ public class OpenApiTest {
     @Test
     public void testAttendanceCreate() {
         List<Long> managerUserIds = new ArrayList<>();
-        managerUserIds.add(2196528L);
+        managerUserIds.add(1L);
         Long now = System.currentTimeMillis();
         AttendanceCreateResponse response = openApi.createAttendance(AttendanceCreate
                 .builder()
@@ -63,7 +63,7 @@ public class OpenApiTest {
                 .failDay(2)
                 .money(200)
                 .ratio(50)
-                .managerUserIds(managerUserIds)
+//                .managerUserIds(managerUserIds)
                 .mobile("13428888367")
                 .build());
         System.out.println(JSON.toJSONString(response));
@@ -79,7 +79,7 @@ public class OpenApiTest {
     public void testHideCtrl() {
         AttendanceHideCtrlResponse response = openApi.attendanceHideCtrl(AttendanceHideCtrl
                 .builder()
-                .activityId("854f4861cbb840808fe97b4434b1e4f4")
+                .activityId("acc3186bdb654d91abe3dd0dcae01a1d")
                 .isHide(true)
                 .build());
         System.out.println(JSON.toJSONString(response));
@@ -109,6 +109,7 @@ public class OpenApiTest {
         InviteTeamUserResponse response = openApi.inviteTeamUser(InviteTeamUser
                 .builder()
                 .inviteNum(2)
+                .mobile("13724846427")
                 .build());
         System.out.println(JSON.toJSONString(response));
         Assert.assertEquals(0, response.getState().getCode());

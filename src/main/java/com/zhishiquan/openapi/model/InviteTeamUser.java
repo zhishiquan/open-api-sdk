@@ -15,4 +15,9 @@ public class InviteTeamUser {
      * 邀请数量
      */
     private Integer inviteNum;
+
+    /**
+     * 手机号码
+     */
+    private String mobile;
 }
