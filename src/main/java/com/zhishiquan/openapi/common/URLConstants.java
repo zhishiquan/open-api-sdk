@@ -5,7 +5,7 @@ package com.zhishiquan.openapi.common;
  * @author jl
  */
 public class URLConstants {
-    public static final String PRODUCT = "http://m.zhishiquan.com";
+    public static final String PRODUCT = "https://m.zhishiquan.com";
 
 //    public static final String PRODUCT = "http://localhost:8080";
 
